@@ -8,8 +8,8 @@
 
     //1.
     $string = 'Десять негритят пошли купаться в море';
-    $fourth = strstr($string, 'к');
-    echo strstr($fourth, ' ', true) . '<br>';
+    $fourth = explode(' ', $string);
+    echo $fourth[3] . '<br>';
     //------------------------------------------------------------------
 
     //2.
