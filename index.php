@@ -5,16 +5,15 @@ $arr = [1, 2, 3, 7, 31, 4, 1, 8, 6];
 echo 'длинна массива - ' . count($arr) . '<br>';
 
 //1.2
-$firstFour = array_slice($arr, 0, 4);
-array_splice($arr, 0, 4);
-$arr = array_merge($arr, $firstFour);
+$firstFour = array_splice($arr, 0, 4);
+array_push($arr, ...$firstFour);
+
 echo '<pre>';
 print_r($arr);
 echo '</pre>';
 
 //1.3
-echo  'сумма - ' . array_sum(array_slice($arr, 4, 3));
-
+echo  'сумма - ' . array_sum(array_slice($arr, 3, 3));
 
 $firstArr = [
     'one' => 1,
@@ -42,13 +41,13 @@ echo '</pre>';
 //2.1
 echo  'в первом нет таких элементов';
 echo '<pre>';
-print_r(array_diff_key($secondArr, $firstArr));
+print_r(array_diff($secondArr, $firstArr));
 echo '</pre>';
 
 //2.2
 echo  'во втором нет таких элементов';
 echo '<pre>';
-print_r(array_diff_key($firstArr, $secondArr));
+print_r(array_diff($firstArr, $secondArr));
 echo '</pre>';
 
 //2.3
@@ -60,7 +59,7 @@ echo '</pre>';
 //2.4
 echo 'отличаются';
 echo '<pre>';
-print_r(array_diff($firstArr, $secondArr));
+print_r(array_diff_assoc($firstArr, $secondArr));
 echo '</pre>';
 
 
@@ -90,11 +89,9 @@ $lastArr = [
 echo '3.1 только вторые елеметы вложенных массивов';
 foreach ($lastArr as $item) {
     if(is_array($item)) {
-        for($i = 0; $i < 1; $i++) {
             echo '<pre>';
             print_r(array_slice($item, 1, 1));
             echo '</pre>';
-        }
     }
 }
 $totalCount = count($lastArr);
