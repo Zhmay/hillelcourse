@@ -62,7 +62,6 @@ echo 'отличаются';
 echo '<pre>';
 print_r(array_diff($firstArr, $secondArr));
 echo '</pre>';
-echo '-------------------------------------';
 
 
 $lastArr = [
@@ -88,14 +87,29 @@ $lastArr = [
     ],
 ];
 
-//3.1
-
-//3.2
+echo '3.1 только вторые елеметы вложенных массивов';
 foreach ($lastArr as $item) {
     if(is_array($item)) {
-        echo '<pre>';
-        print_r($item);
-        echo '</pre>';
-        echo  'количество элементов в массиве - ' . count($item);
+        for($i = 0; $i < 1; $i++) {
+            echo '<pre>';
+            print_r(array_slice($item, 1, 1));
+            echo '</pre>';
+        }
     }
 }
+$totalCount = count($lastArr);
+foreach ($lastArr as $item) {
+    if(is_array($item)) {
+        $totalCount += count($item);
+    }
+}
+echo '3.2 общее количество элементов в массиве - ' . $totalCount . '<br>';
+
+$totalSum = array_sum($lastArr);
+foreach ($lastArr as $item) {
+    if(is_array($item)) {
+        $totalSum += array_sum($item);
+    }
+}
+
+echo '3.3 получить сумму всех значений в массиве - ' . $totalSum . '<br>';
