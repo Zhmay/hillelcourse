@@ -1,5 +1,5 @@
 <?php
-$arr = [12, [10, 5], 5, 'five' => ['one' => 30,'two' => 5,'three' => [10, 9]], 8];
+$arr = [12, [10, 5], 3, 'five' => ['one' => 30,'two' => 2,'three' => [10, 9]], 8];
 
 //1. Создать функцию принимающую массив произвольной вложенности и определяющий любой элемент номер которого передан параметром во всех вложенных массивах.
 function getElement(array $array, $number) {
@@ -9,18 +9,11 @@ function getElement(array $array, $number) {
     foreach ($array as $elem) {
         if($key == $number) {
             $result[] = $elem;
-            if(is_array($elem)) {
-                $newResult = getElement($elem, $number);
-                foreach($newResult as $value){
-                    $result[] = $value;
-                }
-            }
-        } else {
-            if(is_array($elem)) {
-                $newResult = getElement($elem, $number);
-                foreach($newResult as $value){
-                    $result[] = $value;
-                }
+        }
+        if(is_array($elem)) {
+            $newResult = getElement($elem, $number);
+            foreach($newResult as $value){
+                $result[] = $value;
             }
         }
         $key++;
@@ -31,8 +24,22 @@ function getElement(array $array, $number) {
 }
 print_r(getElement($arr, 1));
 
-
-
+//function getItem(array $array, int $index) {
+//    $i = 0;
+//    foreach ($array as $value) {
+//        if($i == $index) {
+//            print_r($value);
+//            echo '<br>';
+//            echo '----------';
+//            echo '<br>';
+//        }
+//        if(is_array($value)) {
+//            getItem($value, $index);
+//        }
+//        $i++;
+//    }
+//}
+//getItem($arr, 1);
 
 //2. Создать функцию которая считает все буквы b в переданной строке, в случае если передается не строка функция должна возвращать false
 function getLetterCount($string, $letter) {
