@@ -73,7 +73,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="color" class="form-label">Favorite color</label>
-                    <input type="text" name="color" class="form-control" id="color">
+                    <input type="color" name="color" class="form-control" id="color">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
