@@ -4,11 +4,11 @@ namespace Core;
 
 use App\Controller\Errors\Error404;
 
-
 class Router
 {
     protected $controller;
     protected $method;
+    protected $page;
 
     public function __construct()
     {
@@ -17,19 +17,18 @@ class Router
 
     public function run()
     {
-        $classNameSpace = 'App\Controller\\' . ucfirst($this->controller);
-        $classNameSpaceFolder = 'App\Controller\\' . ucfirst($this->controller) . '\\' . ucfirst($this->controller);
 
+        $folderPath = 'app/Controller/' .  ucfirst($this->page);
 
-        if(class_exists($classNameSpace)) {
-            $clsObj = new $classNameSpace;
-        } elseif(class_exists($classNameSpaceFolder)){
-            $clsObj = new $classNameSpaceFolder;
+        if(is_dir($folderPath)) {
+            $classNameSpace = 'App\Controller\\' . ucfirst($this->page) . '\\' . ucfirst($this->controller);
+        } else {
+            $classNameSpace = 'App\Controller\\' . ucfirst($this->controller);
         }
 
-        if (isset($clsObj)) {
+        if (class_exists($classNameSpace)) {
+            $clsObj = new $classNameSpace;
             $method = $this->method;
-
             if (method_exists($clsObj, $method)) {
                 return $clsObj->$method();
             }
@@ -41,11 +40,15 @@ class Router
 
     public function init()
     {
+
         $path = [];
         if (!empty($_SERVER['REDIRECT_URL'])) {
             $path = explode('/', $_SERVER['REDIRECT_URL']);
+
         }
-        $this->controller = (!empty($path[1]) && $path[1] != 'index') ? ucfirst($path[1]) : 'Index';
-        $this->method = (!empty($path[2])) ? $path[2] : 'index';
+        $this->page = (!empty($path[1])) ? $path[1] : 'Index';
+        $this->controller = (!empty($path[2])) ? $path[2] : $path[1] ?? 'Index';
+        $this->method = (!empty($path[3])) ? $path[3] : 'index';
     }
 }
+

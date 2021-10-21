@@ -11,6 +11,6 @@ class Index
     }
 
     public function view() {
-        print_r('Main index view');
+        print_r('Main view');
     }
 }
