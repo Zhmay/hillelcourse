@@ -2,10 +2,12 @@
 
 namespace App\Controller\Home;
 
-class Home
+use App\Controller\Controller;
+
+class Home extends Controller
 {
     public function index() {
-        print_r('Home index');
+        $this->generate('home/index');
     }
 
     public function view() {
