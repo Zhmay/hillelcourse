@@ -6,7 +6,7 @@ use App\Controller\Controller;
 
 class Login extends Controller
 {
-    public function index() {
+    public function login() {
         $this->generate('admin/login/index');
     }
 }

@@ -8,6 +8,6 @@
     <title>Login</title>
 </head>
 <body>
-    <h1>I'm Login</h1>
+    <h1>I'm Admin Login</h1>
 </body>
 </html>
