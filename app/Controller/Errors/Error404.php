@@ -4,9 +4,11 @@
 namespace App\Controller\Errors;
 
 
-class Error404
+use App\Controller\Controller;
+
+class Error404 extends Controller
 {
     public function index() {
-        print_r('404 - Шарик ты балбес!');
+        $this->generate('errors/error404/index');
     }
 }

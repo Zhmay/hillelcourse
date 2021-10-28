@@ -1,13 +1,11 @@
 <?php
 
-
 namespace App\Controller;
 
-
-class Index
+class Index extends Controller
 {
     public function index() {
-        print_r('I\'m main index');
+        $this->generate('/index');
     }
 
     public function view() {

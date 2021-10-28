@@ -9,6 +9,7 @@ class View
         extract($data);
         $filePath = 'public/view/' . $path . '.php';
 
+
         if(file_exists($filePath))
         {
             include $filePath;

@@ -7,10 +7,10 @@ use App\Controller\Controller;
 class Home extends Controller
 {
     public function index() {
-        $this->generate('home/index');
+        $this->generate('home/home/index');
     }
 
     public function view() {
-        print_r('Home view');
+        $this->generate('home/home/view');
     }
 }
