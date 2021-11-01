@@ -2,12 +2,14 @@
 
 namespace App\Controller\Admin;
 
-class Post
+use App\Controller\Controller;
+use App\Models\Post as PostModel;
+
+class Post extends Controller
 {
-    public $posts = [
-        "post1" => "hello",
-        "post2" => "some post 1",
-        "post3" => "some post 2",
-        "post4" => "some post 3",
-    ];
+    public function post() {
+        $postList = new PostModel();
+        $data = $postList->getPost();
+        $this->generate('admin/post/index', $data);
+    }
 }

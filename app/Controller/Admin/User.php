@@ -10,6 +10,5 @@ class User extends Controller
         $userList = new UserModel();
         $data = $userList->getUser();
         $this->generate('admin/user/index', $data);
-
     }
 }
