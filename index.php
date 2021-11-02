@@ -31,7 +31,7 @@ fibonacci(10);
 
 $randomArr = [];
 for ($i = 0; $i < 10; $i++) {
-    array_push($randomArr, mt_rand(1, 10));
+    $randomArr[] = mt_rand(1, 10);
 }
 
 prettierArr($randomArr);
@@ -74,28 +74,29 @@ echo 'двумерный массив foreach';
 $array = [2, 4, 5, 6, ['Alex', 'Andrey', 'Bogdan'], 23];
 
 foreach ($array as $item) {
-    prettierArr($item);
     if(is_array($item)) {
         foreach ($item as $elem) {
             prettierArr($elem);
         }
+    } else {
+        prettierArr($item);
     }
 }
 echo 'двумерный массив For';
 for ($i = 0; $i < count($array); $i++) {
-    prettierArr($array[$i]);
 
     if(is_array($array[$i])) {
         for ($j = 0; $j < count($array[$i]); $j++) {
             prettierArr($array[$i][$j]);
         }
+    } else {
+        prettierArr($array[$i]);
     }
 }
 echo 'двумерный массив While';
 $i = 0;
 
 while ($i < count($array)) {
-    prettierArr($array[$i]);
 
     if(is_array($array[$i])) {
         $j = 0;
@@ -104,6 +105,8 @@ while ($i < count($array)) {
             prettierArr($array[$i][$j]);
             $j++;
         }
+    } else {
+        prettierArr($array[$i]);
     }
     $i++;
 }
