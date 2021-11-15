@@ -1,8 +1,8 @@
 <?php
     return [
         'driver' => 'mysql',
-        'host' => '127.0.0.1',
-        'port' => '3306',
+        'host' => 'localhost',
+        'port' => '8889',
         'db_name' => 'db_hillelcources',
         'user' => 'root',
         'pass' => 'root'

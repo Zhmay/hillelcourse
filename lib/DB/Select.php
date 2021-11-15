@@ -9,17 +9,17 @@ class Select
     private $tableNames;
     private $fieldNames = '*';
     private $ordered;
-    private string $orderType;
-    private int $limited;
-    private int $offset;
+    private $orderType;
+    private $limited;
+    private $offset;
 
     private function buildString($forBuild, $ordered = false)
     {
         $string = '';
-        if(is_string($this->$forBuild)) {
-            $string = $this->$forBuild;
-        } elseif (is_array($this->$forBuild)) {
-            foreach ($this->$forBuild as $key => $value) {
+        if(is_string($forBuild)) {
+            $string = $forBuild;
+        } elseif (is_array($forBuild)) {
+            foreach ($forBuild as $key => $value) {
                 if(!empty($string)) {
                     $string .= ',';
                 }
@@ -31,7 +31,6 @@ class Select
                     } else {
                         $string .= $key . ' ' . $value;
                     }
-
                 }
             }
         }
@@ -111,5 +110,7 @@ class Select
                 $sql .= ', ' . $this->getOffset();
             }
         }
+
+        return $sql;
     }
 }
