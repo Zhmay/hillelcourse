@@ -3,15 +3,16 @@
 namespace Lib\DB;
 
 use App\Models\User;
+use Lib\DB\Common\Bridge;
 
-class Select
+class Select extends Bridge
 {
     private $tableNames;
     private $fieldNames = '*';
     private $ordered;
     private $orderType;
-    private $limited;
-    private $offset;
+    private $limited = 0;
+    private $offset = 0;
 
     private function buildString($forBuild, $ordered = false)
     {
@@ -110,7 +111,11 @@ class Select
                 $sql .= ', ' . $this->getOffset();
             }
         }
+    }
 
-        return $sql;
+    public function execute() {
+        $result = $this->fromDB();
+        $result = $result->fetchAll();
+        var_dump($result);
     }
 }

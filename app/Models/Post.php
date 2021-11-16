@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
-class Post
+use App\Models\Common\Model;
+
+class Post extends Model
 {
     public $list = [
         'posts' => [
@@ -24,7 +26,13 @@ class Post
         ]
     ];
 
-    public function getPost() {
-        return $this->list;
+    public function getPost(array $filters = []) {
+        $select = $this->select();
+        $select->setTableNames('posts');
+        $select->execute();
+
+        return [];
     }
+
+
 }
