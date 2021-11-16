@@ -15,7 +15,7 @@ abstract class Bridge
 
     public function fromDB()
     {
-        $add = $this->connection->prepare($this->getSqlString(), array(\PDO::ATTR_CURSOR => \PDO::CURSOR_SCROLL));
+        $add = $this->connection->prepare($this->getSqlString());
         $add->execute();
         return $add;
     }

@@ -26,10 +26,12 @@ class Post extends Model
         ]
     ];
 
-    public function getPost(array $filters = []) {
+    public function getPost(array $filters = []) : array
+    {
         $select = $this->select();
         $select->setTableNames('posts');
-        $select->execute();
+
+       $string = $select->execute();
 
         return [];
     }

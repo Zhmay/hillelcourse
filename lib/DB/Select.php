@@ -4,6 +4,7 @@ namespace Lib\DB;
 
 use App\Models\User;
 use Lib\DB\Common\Bridge;
+use Lib\DB\Where;
 
 class Select extends Bridge
 {
@@ -13,6 +14,12 @@ class Select extends Bridge
     private $orderType;
     private $limited = 0;
     private $offset = 0;
+    private $whereCondition;
+
+    public function setWhereCondition($whereCondition)
+    {
+        $this->whereCondition = $whereCondition;
+    }
 
     private function buildString($forBuild, $ordered = false)
     {
@@ -99,9 +106,15 @@ class Select extends Bridge
         $this->tableNames = $tableNames;
     }
 
-    public function getSqlString()
+    public function getSqlString(): string
     {
         $sql = 'SELECT ' . $this->getFieldNames() . ' FROM ' . $this->getTableNames();
+
+        if(!empty($this->whereCondition)) {
+            $obj = new Where();
+            $whereStr = $obj->getWhereString();
+        }
+
         if(!empty($this->ordered)) {
             $sql .= ' ORDER BY ' . $this->getOrdered();
         }
@@ -111,11 +124,13 @@ class Select extends Bridge
                 $sql .= ', ' . $this->getOffset();
             }
         }
+        return $sql;
     }
 
     public function execute() {
         $result = $this->fromDB();
-        $result =  $result->fetchAll(\PDO::FETCH_ASSOC);
-        var_dump($result);
+        $result =  $result->fetchAll();
+
+        return $result;
     }
 }
