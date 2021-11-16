@@ -3,7 +3,6 @@
 
 namespace Lib\DB\Common;
 
-
 abstract class Bridge
 {
     private $connection;
@@ -16,7 +15,7 @@ abstract class Bridge
 
     public function fromDB()
     {
-        $add = $this->connection->prepare($this->getSqlString());
+        $add = $this->connection->prepare($this->getSqlString(), array(\PDO::ATTR_CURSOR => \PDO::CURSOR_SCROLL));
         $add->execute();
         return $add;
     }

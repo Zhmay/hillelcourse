@@ -115,7 +115,7 @@ class Select extends Bridge
 
     public function execute() {
         $result = $this->fromDB();
-        $result = $result->fetchAll();
+        $result =  $result->fetchAll(\PDO::FETCH_ASSOC);
         var_dump($result);
     }
 }
