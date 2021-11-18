@@ -14,7 +14,9 @@ class GlobalFilters
         $result = [];
         foreach ($_POST as $key => $value) {
             if(false === array_search($key, self::EXCEPTIONS)) {
-                $result[$key] = $value;
+                if(!empty($value)) {
+                    $result[$key] = $value;
+                }
             }
         }
         return $result;

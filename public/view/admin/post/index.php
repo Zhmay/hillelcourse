@@ -5,31 +5,49 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <title>Posts</title>
 </head>
 <body>
-    <h1>I'm Posts List</h1>
-<!--    <ul style="list-style-type: none; margin: 0; padding: 0;">-->
-<!--        --><?php //foreach($posts as $key => $currentPost) : ?>
-<!--            <li style="margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #000;">-->
-<!--                --><?php //foreach ($currentPost as $key => $value) : ?>
-<!--                    <div>-->
-<!--                        --><?php //if($key == 'title') { echo '<a href="#">' . $value . '</a>'; } ?>
-<!--                        --><?php //if($key == 'description') { echo '<p>' . $value . '</p>'; } ?>
-<!--                        --><?php //if($key == 'author') { echo '<i>Author: </i><a href="#">' . $value . '</a>'; } ?>
-<!--                    </div>-->
-<!--                --><?php //endforeach; ?>
-<!--            </li>-->
-<!--        --><?php //endforeach; ?>
-<!--    </ul>-->
-    <form action="#" method="post">
-        <label for="subject">Subject:</label>
-        <input type="text" name="subject" placeholder="Subject">
-        <label for="detail">Detail:</label>
-        <input type="text" name="detail" placeholder="Detail">
-        <label for="user_id">User:</label>
-        <input type="text" name="user_id" placeholder="User">
-        <button type="Submit" name="send">Send</button>
-    </form>
+    <div class="container">
+        <h1>I'm Posts List</h1>
+        <form action="#" method="post" style="margin: 0 0 30px">
+            <label for="id">Id:</label>
+            <input type="text" name="id" placeholder="Id">
+            <label for="subject">Subject:</label>
+            <input type="text" name="subject" placeholder="Subject">
+            <label for="detail">Detail:</label>
+            <input type="text" name="detail" placeholder="Detail">
+            <label for="author">Author:</label>
+            <input type="text" name="author" placeholder="User">
+            <button type="Submit">Send</button>
+        </form>
+
+        <?php if(!empty($data)) : ?>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Subject</th>
+                        <th scope="col">Detail</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Created</th>
+                        <th scope="col">Updated</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach($data as $key => $row) : ?>
+                        <tr>
+                            <?php foreach($row as $value) : ?>
+                                <td><?php echo $value?></td>
+                            <?php endforeach; ?>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php else:?>
+            <p>По вашему запросу ничего не найдено</p>
+        <?php endif;?>
+    </div>
 </body>
 </html>

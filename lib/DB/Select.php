@@ -111,8 +111,9 @@ class Select extends Bridge
         $sql = 'SELECT ' . $this->getFieldNames() . ' FROM ' . $this->getTableNames();
 
         if(!empty($this->whereCondition)) {
-            $obj = new Where();
+            $obj = new Where($this->whereCondition);
             $whereStr = $obj->getWhereString();
+            $sql = $sql . $whereStr;
         }
 
         if(!empty($this->ordered)) {
@@ -129,7 +130,7 @@ class Select extends Bridge
 
     public function execute() {
         $result = $this->fromDB();
-        $result =  $result->fetchAll();
+        $result =  $result->fetchAll(\PDO::FETCH_ASSOC);
 
         return $result;
     }
