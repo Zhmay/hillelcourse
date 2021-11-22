@@ -41,6 +41,10 @@
                             <?php foreach($row as $value) : ?>
                                 <td><?php echo $value?></td>
                             <?php endforeach; ?>
+                            <td>
+                                <a class="btn btn-primary btn-sm" href="update?id=<?=$row['id']?>">Update</a>
+                                <a class="btn btn-danger btn-sm" href="delete?id=<?=$row['id']?>">Delete</a>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -48,6 +52,11 @@
         <?php else:?>
             <p>По вашему запросу ничего не найдено</p>
         <?php endif;?>
+        <div class="row">
+            <div class="col-sm-12 align-self-end">
+                <a class="btn btn-success btn-lg" style="width: 150px;" href="create">Create</a>
+            </div>
+        </div>
     </div>
 </body>
 </html>

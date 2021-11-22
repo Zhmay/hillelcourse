@@ -8,8 +8,26 @@ use App\Helpers\GlobalFilters;
 
 class Post extends Controller
 {
+    private $postList;
+    public function __construct()
+    {
+        $this->postList = new PostModel();
+    }
+
     public function post() {
-        $postList = new PostModel();
-        $this->generate('admin/post/index', $postList->getPost(GlobalFilters::postFilter()));
+
+        $this->generate('admin/post/index', $this->postList->getPost(GlobalFilters::postFilter()));
+    }
+
+    public function create() {
+        $this->generate('admin/post/create');
+    }
+
+    public function update() {
+        $this->generate('admin/post/update');
+    }
+
+    public function delete() {
+
     }
 }

@@ -17,4 +17,20 @@ class Model
     {
         return $this->sql->select();
     }
+
+    protected function insert()
+    {
+        return $this->sql->insert();
+    }
+
+    protected function update()
+    {
+        return $this->sql->update();
+    }
+
+    protected function delete()
+    {
+        return $this->sql->delete();
+    }
+
 }
